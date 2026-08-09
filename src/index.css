@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fredoka", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, sans-serif;
+
+  --color-navy: #0b2c54;
+  --color-navy-dark: #071d38;
+  --color-navy-light: #123a6b;
+  --color-teal: #55c5b7;
+  --color-teal-dark: #3aa89b;
+  --color-orange: #fca719;
+  --color-orange-dark: #e88f00;
+  --color-cream: #fbf3e3;
+  --color-cream-dark: #f3e4c6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-navy-dark);
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+/* offset anchor scroll so fixed navbar doesn't cover section titles */
+section[id] {
+  scroll-margin-top: 84px;
+}
