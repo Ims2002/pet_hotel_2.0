@@ -80,10 +80,8 @@ export default function Rates() {
 
         <div className="space-y-8">
           <RateTable title="Hospedaje" data={STAY_RATES} />
-          <div className="grid md:grid-cols-2 gap-8">
-            <RateTable title="Paseos y cuidado a domicilio" data={OTHER_RATES} />
-            <RateTable title="Peluquería" data={GROOMING_RATES} />
-          </div>
+          <RateTable title="Paseos y cuidado a domicilio" data={OTHER_RATES} />
+          <RateTable title="Peluquería" data={GROOMING_RATES} />
         </div>
 
         <div className="mt-8 bg-white rounded-2xl border border-navy/5 p-6 text-sm text-navy-dark/75 leading-relaxed space-y-2">
