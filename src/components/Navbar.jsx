@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
 import logo from '../assets/logo.jpeg'
-import { NAV_LINKS } from '../data/site'
+import { NAV_LINKS, navHref } from '../data/site'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const menuLinks = NAV_LINKS.filter((link) => link.label !== 'Contacto')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -21,7 +22,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
-        <a href="#inicio" className="flex items-center gap-2 shrink-0">
+        <a href={navHref('#inicio')} className="flex items-center gap-2 shrink-0">
           <img
             src={logo}
             alt="Pet Hotel Benitachell"
@@ -33,20 +34,20 @@ export default function Navbar() {
         </a>
 
         <nav className="hidden lg:flex items-center gap-1">
-          {NAV_LINKS.map((link) => (
+          {menuLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={navHref(link.href)}
               className="px-3 py-2 text-sm font-semibold text-cream/90 hover:text-orange transition-colors"
             >
               {link.label}
             </a>
           ))}
           <a
-            href="#contacto"
+            href={navHref('#contacto')}
             className="ml-2 px-4 py-2 rounded-full bg-orange text-navy-dark text-sm font-bold hover:bg-orange-dark transition-colors"
           >
-            Reservar
+            Contacto
           </a>
         </nav>
 
@@ -61,10 +62,10 @@ export default function Navbar() {
 
       {open && (
         <nav className="lg:hidden bg-navy border-t border-white/10 px-4 pb-4 flex flex-col gap-1">
-          {NAV_LINKS.map((link) => (
+          {menuLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={navHref(link.href)}
               onClick={() => setOpen(false)}
               className="px-2 py-3 text-cream/90 font-semibold border-b border-white/5 last:border-0"
             >
@@ -72,11 +73,11 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#contacto"
+            href={navHref('#contacto')}
             onClick={() => setOpen(false)}
             className="mt-3 mb-1 text-center px-4 py-3 rounded-full bg-orange text-navy-dark font-bold"
           >
-            Reservar
+            Contacto
           </a>
         </nav>
       )}

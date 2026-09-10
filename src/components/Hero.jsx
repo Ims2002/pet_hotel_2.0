@@ -16,7 +16,7 @@ export default function Hero() {
 
       <div className="relative max-w-6xl mx-auto px-6 py-16 w-full">
         <span className="inline-block px-4 py-1.5 rounded-full bg-teal/20 text-teal font-bold text-sm tracking-wide border border-teal/40 mb-5">
-          🐾 Guardería canina sin jaulas
+          Guardería canina sin jaulas
         </span>
         <h1 className="font-display font-semibold text-4xl sm:text-5xl md:text-6xl text-cream leading-tight max-w-3xl">
           Bienvenidos a Pet Hotel Benitachell

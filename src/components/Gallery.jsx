@@ -1,26 +1,22 @@
-import { useState } from 'react'
-import { FiX } from 'react-icons/fi'
+import { FaImages } from 'react-icons/fa'
 import squadCesped from '../assets/gallery/squad-cesped.jpeg'
 import billSleep from '../assets/gallery/bill-sleep.jpeg'
 import billTopare from '../assets/gallery/bill-topare.jpeg'
 import sirMimi from '../assets/gallery/sir-mimi.jpeg'
 import sky from '../assets/gallery/sky.jpeg'
 import petHotel from '../assets/gallery/pethotel.jpeg'
-import '../assets/gallery/' 
 
-const PHOTOS = [
-  { src: squadCesped, alt: 'Grupo de perros jugando en el jardín', caption: 'Zona de juegos al aire libre' },
-  { src: sirMimi, alt: 'Perro relajado dentro de las instalaciones', caption: 'Como en casa' },
-  { src: sky, alt: 'Perro de paseo con vistas al Peñón de Ifach', caption: 'Paseos por la zona' },
-  { src: billTopare, alt: 'Cachorro descansando con sus juguetes', caption: 'Momento de juego' },
-  { src: billSleep, alt: 'Perro durmiendo tranquilo', caption: 'Descanso tranquilo' },
-  { src: petHotel, alt: 'Cartel de Pet Hotel Benitachell', caption: 'Nuestras instalaciones' },
-  { src: 'WhatsApp Image 2026-09-09 at 16.15.13.jpeg', alt: 'Imagen de WhatsApp', caption: 'Momento especial' }
+// Solo una muestra aquí — la galería completa (todas las fotos) vive en /galeria/
+const PREVIEW_PHOTOS = [
+  { src: squadCesped, alt: 'Grupo de perros jugando en el jardín' },
+  { src: sirMimi, alt: 'Perro relajado dentro de las instalaciones' },
+  { src: sky, alt: 'Perro de paseo con vistas al Peñón de Ifach' },
+  { src: billTopare, alt: 'Cachorro descansando con sus juguetes' },
+  { src: billSleep, alt: 'Perro durmiendo tranquilo' },
+  { src: petHotel, alt: 'Cartel de Pet Hotel Benitachell' },
 ]
 
 export default function Gallery() {
-  const [active, setActive] = useState(null)
-
   return (
     <section id="galeria" className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-6">
@@ -34,11 +30,11 @@ export default function Gallery() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {PHOTOS.map((photo, i) => (
-            <button
+          {PREVIEW_PHOTOS.map((photo, i) => (
+            <a
               key={photo.src}
-              onClick={() => setActive(i)}
-              className={`group relative rounded-2xl overflow-hidden ${
+              href="/galeria/"
+              className={`group relative rounded-2xl overflow-hidden block ${
                 i === 0 ? 'col-span-2 row-span-2' : ''
               }`}
             >
@@ -48,31 +44,19 @@ export default function Gallery() {
                 className="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
+            </a>
           ))}
         </div>
-      </div>
 
-      {active !== null && (
-        <div
-          className="fixed inset-0 z-[60] bg-navy-dark/95 flex items-center justify-center p-4"
-          onClick={() => setActive(null)}
-        >
-          <button
-            className="absolute top-5 right-5 text-cream text-3xl"
-            onClick={() => setActive(null)}
-            aria-label="Cerrar"
+        <div className="text-center mt-10">
+          <a
+            href="/galeria/"
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-navy hover:bg-navy-light text-cream font-bold transition-colors shadow-lg"
           >
-            <FiX />
-          </button>
-          <img
-            src={PHOTOS[active].src}
-            alt={PHOTOS[active].alt}
-            className="max-h-[85vh] max-w-full rounded-xl object-contain"
-            onClick={(e) => e.stopPropagation()}
-          />
+            <FaImages /> Ver todas las fotos
+          </a>
         </div>
-      )}
+      </div>
     </section>
   )
 }

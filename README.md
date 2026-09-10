@@ -1,8 +1,24 @@
 # Pet Hotel Benitachell — Web
 
-Single Page Application en React + Vite + Tailwind CSS v4. Todas las secciones
-viven en una sola página con navegación por anclas: Inicio, Servicios,
-Nosotros, Tarifas, Galería, Reseñas y Contacto.
+React + Vite + Tailwind CSS v4. La página principal es una Single Page
+Application con navegación por anclas: Inicio, Servicios, Nosotros, Tarifas,
+Galería (muestra) y Contacto. La **Galería completa** (todas las fotos) vive
+en su propia página, `/galeria/`, con el mismo estilo y paleta — se separó de
+la home porque el volumen de fotos era demasiado para cargarlo todo en una
+sola página.
+
+## Galería
+
+- `src/components/Gallery.jsx` — sección de la home, muestra solo 6 fotos
+  curadas y un botón "Ver todas las fotos" hacia `/galeria/`.
+- `src/pages/GalleryFull.jsx` — página completa, carga **automáticamente**
+  todas las imágenes que haya en `src/assets/gallery/` (usando
+  `import.meta.glob`), con lightbox y navegación anterior/siguiente.
+- Para añadir o quitar fotos de la galería completa, basta con añadir o
+  borrar archivos en `src/assets/gallery/` — no hace falta tocar código.
+- Es una segunda página de Vite (`galeria/index.html` + `galeria/main.jsx`),
+  no un router de JavaScript, así que funciona igual en `npm run dev` que en
+  producción sin configuración extra en Vercel.
 
 ## Paleta de marca (extraída del logo)
 

@@ -1,6 +1,6 @@
 import { FaInstagram, FaFacebook, FaTiktok } from 'react-icons/fa'
 import logo from '../assets/logo.jpeg'
-import { CONTACT, NAV_LINKS } from '../data/site'
+import { CONTACT, NAV_LINKS, navHref } from '../data/site'
 
 export default function Footer() {
   return (
@@ -33,7 +33,7 @@ export default function Footer() {
           <ul className="space-y-2 text-sm">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="hover:text-teal transition-colors">
+                <a href={navHref(link.href)} className="hover:text-teal transition-colors">
                   {link.label}
                 </a>
               </li>

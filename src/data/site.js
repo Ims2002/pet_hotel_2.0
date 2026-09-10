@@ -27,12 +27,23 @@ export const SCHEDULE = [
   { day: 'Domingo', hours: '10:00 – 17:00' },
 ]
 
+// Resuelve un href de ancla (#seccion) para que funcione también fuera de la
+// home (p. ej. en /galeria/): lo convierte en /#seccion para volver a la home
+// y luego saltar a la sección. Los enlaces normales (/algo) se dejan igual.
+export const navHref = (href) => {
+  if (typeof window === 'undefined') return href
+  if (href.startsWith('#') && window.location.pathname !== '/') {
+    return `/${href}`
+  }
+  return href
+}
+
 export const NAV_LINKS = [
   { label: 'Inicio', href: '#inicio' },
   { label: 'Servicios', href: '#servicios' },
   { label: 'Nosotros', href: '#nosotros' },
   { label: 'Tarifas', href: '#tarifas' },
-  { label: 'Galería', href: '#galeria' },
+  { label: 'Galería', href: '/galeria/' },
   { label: 'Reseñas', href: '#resenas' },
   { label: 'Contacto', href: '#contacto' },
 ]
