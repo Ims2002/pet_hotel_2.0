@@ -1,5 +1,10 @@
 // Datos centralizados del sitio — edita aquí para actualizar contenido en toda la web.
 
+// Endpoint del formulario de Contacto (Formspree). Sustituye XXXXXXXX por el
+// ID que te da Formspree al crear el formulario en https://formspree.io
+// (Settings del formulario → "Endpoint", con forma https://formspree.io/f/XXXXXXXX).
+export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xvkolkqa'
+
 export const CONTACT = {
   phone: '644159343',
   phoneDisplay: '644 15 93 43',

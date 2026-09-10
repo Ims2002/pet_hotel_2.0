@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaCheckCircle } from 'react-icons/fa'
-import { CONTACT } from '../data/site'
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa'
+import { CONTACT, FORMSPREE_ENDPOINT } from '../data/site'
 
 const initialForm = {
   nombre: '',
@@ -14,39 +14,39 @@ const initialForm = {
 
 export default function Contact() {
   const [form, setForm] = useState(initialForm)
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
 
   const handleChange = (e) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setStatus('sending')
 
-    // TODO: sustituir este envío por Formspree (o el proveedor elegido) cuando
-    // esté decidido. Por ahora se abre el cliente de correo del usuario con
-    // los datos precargados, para que el formulario ya sea funcional.
-    const body = [
-      `Nombre: ${form.nombre}`,
-      `Teléfono: ${form.telefono}`,
-      `Email: ${form.email}`,
-      form.mascota && `Mascota: ${form.mascota}`,
-      form.fechaInicio && `Fecha inicio estancia: ${form.fechaInicio}`,
-      form.fechaFin && `Fecha fin estancia: ${form.fechaFin}`,
-      '',
-      'Mensaje:',
-      form.mensaje,
-    ]
-      .filter(Boolean)
-      .join('\n')
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          Nombre: form.nombre,
+          Teléfono: form.telefono,
+          Email: form.email,
+          Mascota: form.mascota || '—',
+          'Fecha inicio estancia': form.fechaInicio || '—',
+          'Fecha fin estancia': form.fechaFin || '—',
+          Mensaje: form.mensaje,
+          _subject: 'Contacto / Reserva – Pet Hotel Benitachell',
+        }),
+      })
 
-    const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(
-      'Contacto / Reserva – Pet Hotel Benitachell'
-    )}&body=${encodeURIComponent(body)}`
+      if (!res.ok) throw new Error('Formspree respondió con error')
 
-    window.location.href = mailto
-    setSent(true)
-    setForm(initialForm)
+      setStatus('sent')
+      setForm(initialForm)
+    } catch (err) {
+      setStatus('error')
+    }
   }
 
   return (
@@ -92,9 +92,14 @@ export default function Contact() {
           onSubmit={handleSubmit}
           className="lg:col-span-3 bg-white rounded-2xl shadow-sm border border-navy/5 p-6 sm:p-8"
         >
-          {sent && (
+          {status === 'sent' && (
             <div className="mb-6 flex items-center gap-2 text-teal-dark bg-teal/10 border border-teal/30 rounded-xl px-4 py-3 text-sm font-semibold">
-              <FaCheckCircle /> ¡Gracias! Hemos abierto tu app de correo para enviar tu solicitud.
+              <FaCheckCircle /> ¡Gracias! Tu solicitud se ha enviado correctamente, te contactaremos en breve.
+            </div>
+          )}
+          {status === 'error' && (
+            <div className="mb-6 flex items-center gap-2 text-orange-dark bg-orange/10 border border-orange/30 rounded-xl px-4 py-3 text-sm font-semibold">
+              <FaExclamationCircle /> No se pudo enviar. Prueba de nuevo o escríbenos directamente a {CONTACT.email}.
             </div>
           )}
 
@@ -124,9 +129,10 @@ export default function Contact() {
 
           <button
             type="submit"
-            className="mt-6 w-full sm:w-auto px-8 py-3.5 rounded-full bg-orange hover:bg-orange-dark text-navy-dark font-bold transition-colors"
+            disabled={status === 'sending'}
+            className="mt-6 w-full sm:w-auto px-8 py-3.5 rounded-full bg-orange hover:bg-orange-dark disabled:opacity-60 disabled:cursor-not-allowed text-navy-dark font-bold transition-colors"
           >
-            Enviar solicitud
+            {status === 'sending' ? 'Enviando...' : 'Enviar solicitud'}
           </button>
         </form>
       </div>

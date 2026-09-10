@@ -38,21 +38,29 @@ Casi todo el contenido (teléfono, email, redes sociales, horario, enlace de
 Google reseñas) está centralizado en `src/data/site.js`. Los precios están en
 `src/components/Rates.jsx`.
 
-## Formulario de contacto/reservas (pendiente de decidir)
+## Formulario de contacto/reservas (Formspree)
 
 El formulario único de Contacto (fusiona Contacto + Reservas de la web
-anterior) está montado y es funcional: al enviarlo, abre el cliente de correo
-del usuario con el mensaje precargado hacia
-`guarderiacaninabenitachell@gmail.com`. Es una solución de arranque mientras
-decides el proveedor definitivo.
+anterior) envía los datos directamente por email mediante
+[Formspree](https://formspree.io) — sin backend propio y sin depender del
+cliente de correo del visitante.
 
-Cuando quieras conectarlo a un backend real (recomendado: **Formspree**,
-gratis y sin backend propio), edita `handleSubmit` en
-`src/components/Contact.jsx`:
+**Configuración (una sola vez):**
 
-1. Crea una cuenta en [formspree.io](https://formspree.io) y un formulario nuevo.
-2. Sustituye el bloque `mailto:` por un `fetch` a tu endpoint de Formspree
-   (`https://formspree.io/f/XXXXXXX`) enviando `form` como JSON.
+1. Crea una cuenta gratuita en [formspree.io](https://formspree.io) (sin
+   tarjeta) y un formulario nuevo.
+2. Copia el endpoint que te dan, con forma `https://formspree.io/f/XXXXXXXX`.
+3. Pégalo en `src/data/site.js`, en la constante `FORMSPREE_ENDPOINT`
+   (sustituyendo el placeholder `XXXXXXXX`).
+4. En el panel del formulario en Formspree, confirma/edita el email de
+   destino en *Settings* (por defecto `guarderiacaninabenitachell@gmail.com`
+   si creaste la cuenta con ese correo, o cámbialo ahí).
+5. Formspree te pedirá confirmar el primer envío haciendo clic en un enlace
+   que llega a ese email — es un paso único de verificación anti-spam.
+
+El botón muestra "Enviando...", y al terminar aparece un aviso de éxito o de
+error (con el email de contacto como alternativa) directamente en la página,
+sin recargarla.
 
 ## Reseñas de Google (Places API)
 
