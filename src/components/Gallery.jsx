@@ -6,6 +6,7 @@ import billTopare from '../assets/gallery/bill-topare.jpeg'
 import sirMimi from '../assets/gallery/sir-mimi.jpeg'
 import sky from '../assets/gallery/sky.jpeg'
 import petHotel from '../assets/gallery/pethotel.jpeg'
+import '../assets/gallery/' 
 
 const PHOTOS = [
   { src: squadCesped, alt: 'Grupo de perros jugando en el jardín', caption: 'Zona de juegos al aire libre' },
@@ -14,6 +15,7 @@ const PHOTOS = [
   { src: billTopare, alt: 'Cachorro descansando con sus juguetes', caption: 'Momento de juego' },
   { src: billSleep, alt: 'Perro durmiendo tranquilo', caption: 'Descanso tranquilo' },
   { src: petHotel, alt: 'Cartel de Pet Hotel Benitachell', caption: 'Nuestras instalaciones' },
+  { src: 'WhatsApp Image 2026-09-09 at 16.15.13.jpeg', alt: 'Imagen de WhatsApp', caption: 'Momento especial' }
 ]
 
 export default function Gallery() {
