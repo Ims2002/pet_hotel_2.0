@@ -10,10 +10,10 @@ const STAY_RATES = {
 const OTHER_RATES = {
   headers: ['Servicio', 'Entre semana', 'Fin de semana o festivo'],
   rows: [
-    ['Paseo 15 minutos', '12€', '15€'],
+    ['Paseo 15 minutos', '15€', '20€'],
     ['Cuidado a domicilio 1 gato', '15€ (1 visita) / 20€ (2 visitas)', '17€ (1 visita) / 22€ (2 visitas)'],
     ['Cuidado a domicilio 2 gatos', '20€ (1 visita) / 25€ (2 visitas)', '22€ (1 visita) / 27€ (2 visitas)'],
-    ['Cuidado larga estancia (+30 días)*', '18€', '20€'],
+    ['Cuidado larga estancia (+30 días)*', '20€', '22€'],
     ['Cuidado a domicilio perro', 'Consultar', 'Consultar'],
   ],
 }
@@ -21,8 +21,8 @@ const OTHER_RATES = {
 const GROOMING_RATES = {
   headers: ['Peluquería', 'Pelo corto', 'Pelo largo'],
   rows: [
-    ['Perro grande', '35€', '40€'],
-    ['Perro pequeño', '25€', '30€'],
+    ['Perro grande', '40€', '45€'],
+    ['Perro pequeño', '30€', '35€'],
   ],
 }
 
@@ -84,7 +84,7 @@ export default function Rates() {
         <div className="mt-8 bg-white rounded-2xl border border-navy/5 p-6 text-sm text-navy-dark/75 leading-relaxed space-y-2">
           <p>* Si la mascota es recogida antes de las 12h se cobra una tarifa fija de 10€; después de esa hora se cobra el día completo.</p>
           <p>* El precio incluye la comida, el baño y la estancia. Se recomienda traer juguetes o cama para familiarizar el ambiente del animal.</p>
-          <p>* Ampliaciones de estancia sujetas a disponibilidad. Temporada alta con suplemento de 2€/animal (verano, 15 diciembre–7 enero, Semana Santa y temporada de comuniones).</p>
+          <p>* Ampliaciones de estancia sujetas a disponibilidad. Temporada alta con suplemento de 1€/animal (verano, 15 diciembre–7 enero, Semana Santa y temporada de comuniones).</p>
           <p>* Recogida a domicilio gratuita en un radio de 5 km. Ampliación hasta 20 km con suplemento: 10 km 12€ · 15 km 18€ · 20 km 23€.</p>
         </div>
       </div>
