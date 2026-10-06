@@ -1,5 +1,5 @@
 import { FaInstagram, FaFacebook, FaTiktok, FaClock } from 'react-icons/fa'
-import photo from '../assets/gallery/sir-mimi.jpeg'
+import photo from '../assets/gallery/blue.jpeg' 
 import { CONTACT, SCHEDULE } from '../data/site'
 
 export default function About() {
