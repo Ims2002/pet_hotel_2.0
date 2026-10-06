@@ -70,9 +70,6 @@ export default function Rates() {
     <section id="tarifas" className="py-20 bg-cream">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-teal-dark font-bold tracking-wide uppercase text-sm">
-            Precios claros
-          </span>
           <h2 className="font-display font-semibold text-3xl sm:text-4xl text-navy mt-2">
             Tarifas
           </h2>
