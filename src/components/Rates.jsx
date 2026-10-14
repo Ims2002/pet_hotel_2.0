@@ -2,8 +2,9 @@ const STAY_RATES = {
   headers: ['Estancia / Mascota', 'Día\nEntre semana', 'Día + Noche\nEntre semana', 'Día\nFin de semana', 'Día + Noche\nFin de semana', 'Servicio Tarde + Noche'],
   rows: [
     ['1 Mascota', '20€', '25€', '25€', '30€', '20€'],
-    ['2 Mascotas', '35€', '40€', '40€', '45€', '35€'],
-    ['3 Mascotas', '45€', '50€', '50€', '55€', '40€'],
+    ['2 Mascotas', '35€', '45€', '40€', '50€', '35€'],
+    ['3 Mascotas', '45€', '55€', '50€', '60€', '45€'],
+    ['4 Mascotas', '55€', '65€', '60€', '70€', '55€'],
   ],
 }
 
